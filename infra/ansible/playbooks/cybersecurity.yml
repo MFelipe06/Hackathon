@@ -1,0 +1,7 @@
+---
+- name: Provisioning VM Cybersécurité
+  hosts: all
+  gather_facts: yes
+  roles:
+    - common
+    - cybersecurity

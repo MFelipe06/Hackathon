@@ -1,0 +1,32 @@
+---
+- name: Installation outils Cybersécurité
+  apt:
+    name:
+      - nmap
+      - wireshark
+      - netcat-openbsd
+      - hydra
+      - john
+      - sqlmap
+      - nikto
+      - ufw
+      - fail2ban
+    state: present
+  become: yes
+
+- name: Installation de Trivy (scanner vulnérabilités)
+  shell: |
+    curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
+  become: yes
+
+- name: Créer un fichier de bienvenue Cybersec
+  copy:
+    content: |
+      =====================================
+      Cours : Cybersécurité / CTF
+      Geneva Institute of Technology
+      =====================================
+      Outils installés : nmap, wireshark, netcat, hydra, john, sqlmap, nikto, trivy
+    dest: /home/ubuntu/cours/README.txt
+    owner: ubuntu
+  become: yes

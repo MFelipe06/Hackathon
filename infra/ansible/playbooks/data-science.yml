@@ -1,0 +1,7 @@
+---
+- name: Provisioning VM Data Science
+  hosts: all
+  gather_facts: yes
+  roles:
+    - common
+    - data-science

@@ -1,0 +1,7 @@
+---
+- name: Provisioning VM Linux Admin
+  hosts: all
+  gather_facts: yes
+  roles:
+    - common
+    - linux-admin
