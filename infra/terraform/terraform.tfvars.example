@@ -1,0 +1,9 @@
+os_username     = "PCU-XXXXXXXX"
+os_password     = "TON_MOT_DE_PASSE"
+os_project_name = "PCP-XXXXXXXX"
+os_project_id   = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+ssh_public_key  = "ssh-ed25519 AAAA..."
+course_type     = "linux-admin"
+vm_count        = 1
+student_name    = "dupont-marie"
+end_date        = "2026-07-01"
