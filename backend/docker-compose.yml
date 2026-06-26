@@ -1,0 +1,48 @@
+services:
+
+  backend:
+    build: .
+    container_name: git-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - CLOUD_NAME=infomaniak
+      - ANSIBLE_DIR=/app/infra/ansible
+      - TERRAFORM_DIR=/app/infra/terraform
+    volumes:
+      # Accès aux fichiers infra depuis le conteneur
+      - ../infra:/app/infra
+      # Accès aux credentials OpenStack
+      - ~/.config/openstack:/root/.config/openstack:ro
+      # Accès à la clé SSH pour Ansible
+      - ~/.ssh:/root/.ssh:ro
+    restart: unless-stopped
+    networks:
+      - git-network
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: git-postgres
+    environment:
+      - POSTGRES_DB=gitcloud
+      - POSTGRES_USER=git
+      - POSTGRES_PASSWORD=GitHackathon2026
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+    networks:
+      - git-network
+
+  redis:
+    image: redis:7-alpine
+    container_name: git-redis
+    restart: unless-stopped
+    networks:
+      - git-network
+
+networks:
+  git-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
