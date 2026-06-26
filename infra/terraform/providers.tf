@@ -8,8 +8,5 @@ terraform {
 }
 
 provider "openstack" {
-  auth_url            = "https://api.pub1.infomaniak.cloud/identity/v3"
-  region              = var.region
-  user_domain_name    = "default"
-  project_domain_name = "default"
+  cloud = "infomaniak"  # nom du cloud dans ton clouds.yaml
 }
